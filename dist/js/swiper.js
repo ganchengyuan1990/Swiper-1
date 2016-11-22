@@ -716,7 +716,13 @@
                 width = s.params.width;
             }
             else {
-                width = s.container[0].clientWidth;
+                //针对DOM元素还未加载导致的width为0的情况
+                if(s.container[0].clientWidth == 0) {
+                    width = document.body.clientWidth;
+                }
+                else {
+                    width = s.container[0].clientWidth;
+                }
             }
             if (typeof s.params.height !== 'undefined') {
                 height = s.params.height;
